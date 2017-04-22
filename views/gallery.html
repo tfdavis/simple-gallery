@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+<title>{{ gallery.title }}</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+<script src="/galleria/galleria-1.5.6.min.js"></script>
+<style>
+body { margin: 0px; padding: 0px; text-align: center; background-color: #000;}
+.galleria{ max-width: 1024px; height: 768px; background: #000; text-align: center; margin: 0 auto;}
+
+</style>
+</head>
+<body>
+<div id="outer" style="width:100%">  
+	<div class="galleria"></div>
+</div>
+<script>
+
+$.getJSON( "{{ gallery.asset_dir }}/metadata.json", function( data ) {
+	Galleria.loadTheme('/galleria/themes/classic/galleria.classic.min.js');
+	Galleria.configure({
+		// imageCrop: true,
+		transition: 'fade',
+		dataSource: data
+	});
+	Galleria.run('.galleria');
+});
+</script>
+{% include 'footer_js.html' %}
+</body>
+</html>
